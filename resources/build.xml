@@ -129,7 +129,6 @@ ${line}
 	<target name="copyToSketchbook">
 		<echo message="copying files to the ${folder} folder in your sketchbook." />
 		<!-- copy the jar file to processing's sketchbook libraries folder -->
-		<delete dir="${sketchbook.location}/${folder}/${project.name}" />
   	  	<mkdir dir="${sketchbook.location}/${folder}/${project.name}" />
   		<copy todir="${sketchbook.location}/${folder}/${project.name}">
   			<fileset dir="${project.tmp}/${project.name}"/>
