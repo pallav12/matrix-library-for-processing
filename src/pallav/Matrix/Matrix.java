@@ -433,7 +433,7 @@ public class Matrix {
 			throw new IllegalArgumentException("Input should Square Matrix");
 		}
 		int N = array2.length;
-		float[][] adj = new float[4][4];
+		float[][] adj = new float[N][N];
 		if (N == 1) {
 			adj[0][0] = 1;
 			return new Matrix(adj);
