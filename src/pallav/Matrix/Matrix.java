@@ -35,9 +35,9 @@ public class Matrix {
 	 * @return new Matrix
 	 */
 	public static Matrix array(int[][] b) {
-		float[][] c = new float[b[0].length][b.length];
-		for (int i = 0; i < b[0].length; i++) {
-			for (int j = 0; j < b.length; j++) {
+		float[][] c = new float[b.length][b[0].length];
+		for (int i = 0; i < b.length; i++) {
+			for (int j = 0; j < b[0].length; j++) {
 				c[i][j] = (float) b[i][j];
 			}
 		}
