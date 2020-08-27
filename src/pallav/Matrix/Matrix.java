@@ -484,7 +484,7 @@ public class Matrix {
 	 */
 	static float createDeterminant(Matrix mat, int n) {
 		float[][] A = mat.array;
-		int D = 0;
+		float D = 0;
 		if (n == 1) {
 			return A[0][0];
 		}
