@@ -458,7 +458,7 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix adjoint(Matrix a) {
-		return new Matrix(Matrix.adjoint(a).array);
+		return Matrix.adjoint(a.array);
 	}
 
 	/**
