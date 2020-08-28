@@ -35,9 +35,9 @@ public class Matrix {
 	 * @return new Matrix
 	 */
 	public static Matrix array(int[][] b) {
-		float[][] c = new float[b[0].length][b.length];
-		for (int i = 0; i < b[0].length; i++) {
-			for (int j = 0; j < b.length; j++) {
+		float[][] c = new float[b.length][b[0].length];
+		for (int i = 0; i < b.length; i++) {
+			for (int j = 0; j < b[0].length; j++) {
 				c[i][j] = (float) b[i][j];
 			}
 		}
@@ -392,16 +392,13 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a matrix, Matrix has to be square
+	 * Transposes a matrix
 	 * 
 	 * @param a Matrix
 	 * @return Matrix
 	 */
 	public static Matrix transpose(Matrix a) {
-		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(a))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
-		}
-		float[][] arr = new float[a.array.length][a.array.length];
+		float[][] arr = new float[a.array[0].length][a.array.length];
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {
 
@@ -413,7 +410,7 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a Array, Array has to be square
+	 * Transposes a Array
 	 * 
 	 * @param a Array
 	 * @return Array
@@ -458,7 +455,7 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix adjoint(Matrix a) {
-		return new Matrix(Matrix.adjoint(a).array);
+		return Matrix.adjoint(a.array);
 	}
 
 	/**
@@ -484,7 +481,7 @@ public class Matrix {
 	 */
 	static float createDeterminant(Matrix mat, int n) {
 		float[][] A = mat.array;
-		int D = 0;
+		float D = 0;
 		if (n == 1) {
 			return A[0][0];
 		}
