@@ -472,7 +472,7 @@ public class Matrix {
 	 */
 	public static float determinant(Matrix mat) {
 		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(mat))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
+			throw new IllegalArgumentException("Input should Be a Square Matrix");
 		}
 		Matrix b = new Matrix(mat.array.clone());
 		return createDeterminant(b, b.array.length);
@@ -545,7 +545,7 @@ public class Matrix {
 	 */
 	public static Matrix inverse(Matrix a) {
 		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(a))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
+			throw new IllegalArgumentException("Input should be a Square Matrix");
 		}
 		int n = a.array.length;
 		float[][] b = a.array;
