@@ -237,6 +237,18 @@ public class Matrix {
 	 */
 	public static Matrix add(Matrix a, int k) {
 
+		return Matrix.add(a, (float)k);
+	}
+
+	/**
+	 * sums every element of matrix with float
+	 * 
+	 * @param a Matrix
+	 * @param k float
+	 * @return new Matrix
+	 */
+	public static Matrix add(Matrix a, float k) {
+
 		float[][] ar = a.array;
 		float[][] cr = new float[ar.length][ar[0].length];
 		for (int i = 0; i < ar.length; i++) {
@@ -256,6 +268,18 @@ public class Matrix {
 	 */
 	public static float[][] add(float[][] a, int k) {
 
+		return Matrix.add(new Matrix(a), (float)k).array;
+	}
+
+	/**
+	 * sums every element of Array with float
+	 * 
+	 * @param a Array
+	 * @param k float
+	 * @return new Array
+	 */
+	public static float[][] add(float[][] a, float k) {
+
 		return Matrix.add(new Matrix(a), k).array;
 	}
 
@@ -267,7 +291,7 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix subtract(Matrix a, Matrix b) {
-		return Matrix.add(a, Matrix.Multiply(b, -1));
+		return Matrix.add(a, Matrix.Multiply(b, -1.0));
 	}
 
 	/**
@@ -278,6 +302,17 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix subtract(Matrix a, int j) {
+		return Matrix.add(a, (float)(-j));
+	}
+
+	/**
+	 * subtract given float with every element of given matrix
+	 * 
+	 * @param a Matrix
+	 * @param j float
+	 * @return Matrix
+	 */
+	public static Matrix subtract(Matrix a, float j) {
 		return Matrix.add(a, -j);
 	}
 
@@ -289,7 +324,18 @@ public class Matrix {
 	 * @return Array
 	 */
 	public static float[][] subtract(float[][] a, int j) {
-		return Matrix.add(a, -j);
+		return Matrix.add(new Matrix(a), (float)(-j)).array;
+	}
+
+	/**
+	 * subtract given float with every element of given Array
+	 * 
+	 * @param a Array
+	 * @param j float
+	 * @return Array
+	 */
+	public static float[][] subtract(float[][] a, float j) {
+		return Matrix.add(new Matrix(a), -j).array;
 	}
 
 	/**
@@ -312,6 +358,18 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix Multiply(Matrix a, int b) {
+		return Matrix.Multiply(a, (float)b);
+	}
+
+	/**
+	 * multiplies every element of Matrix a(first param) with float b(second
+	 * param)
+	 * 
+	 * @param a Matrix
+	 * @param b float
+	 * @return Matrix
+	 */
+	public static Matrix Multiply(Matrix a, float b) {
 		float[][] ar = a.array;
 
 		for (int j = 0; j < ar.length; j++) {
@@ -330,6 +388,17 @@ public class Matrix {
 	 * @return Array
 	 */
 	public static float[][] Multiply(float[][] a, int b) {
+		return Matrix.Multiply(new Matrix(a), (float)b).array;
+	}
+
+	/**
+	 * multiplies every element of Array a(first param) with float b(second param)
+	 * 
+	 * @param a Array
+	 * @param b float
+	 * @return Array
+	 */
+	public static float[][] Multiply(float[][] a, float b) {
 		return Matrix.Multiply(new Matrix(a), b).array;
 	}
 
