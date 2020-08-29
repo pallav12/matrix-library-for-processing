@@ -58,7 +58,7 @@ public class Matrix {
 	 * @return new Identity square Matrix
 	 */
 	public static Matrix identity(int a) {
-		if (a < 0) {
+		if (a <= 0) {
 			throw new IllegalArgumentException("Input should be positive");
 		}
 		float[][] arr = new float[a][a];
@@ -85,7 +85,7 @@ public class Matrix {
 	 * @return new Square Matrix of 1 as every element
 	 */
 	public static Matrix ones(int a) {
-		if (a < 0) {
+		if (a <= 0) {
 			throw new IllegalArgumentException("Input should be positive");
 		}
 		float[][] arr = new float[a][a];
@@ -104,6 +104,9 @@ public class Matrix {
 	 * @return new Square Array of 1 as every element
 	 */
 	public static float[][] onesArray(int a) {
+		if (a <= 0) {
+			throw new IllegalArgumentException("Input should be positive");
+		}
 		return Matrix.ones(a).array;
 	}
 
@@ -113,8 +116,8 @@ public class Matrix {
 	 * @return A new Matrix with every element of Matrix as 0
 	 */
 	public static Matrix empty(int a, int b) {
-		if (a < 0 || b < 0) {
-			throw new IllegalArgumentException("Input should be positive");
+		if (a <= 0 || b <= 0) {
+			throw new IllegalArgumentException("Inputs should be positive");
 		}
 		int[][] arr = new int[a][b];
 		return Matrix.array(arr);
@@ -127,6 +130,9 @@ public class Matrix {
 	 * @return A new Array with every element of Array as 0
 	 */
 	public static float[][] emptyArray(int a, int b) {
+		if (a <= 0 || b <= 0) {
+			throw new IllegalArgumentException("Inputs should be positive");
+		}
 		float[][] arr = new float[a][b];
 		return arr;
 
@@ -199,7 +205,7 @@ public class Matrix {
 	 */
 	public static Matrix add(Matrix a, Matrix b) {
 		if (!Matrix.dimensionCheck(Matrix.dimensions(a), Matrix.dimensions(b))) {
-			throw new IllegalArgumentException("both matrix should be of same dimensions");
+			throw new IllegalArgumentException("Both matrices should be of same dimensions");
 		}
 		float[][] ar = a.array.clone();
 		float[][] br = b.array.clone();
@@ -237,6 +243,18 @@ public class Matrix {
 	 */
 	public static Matrix add(Matrix a, int k) {
 
+		return Matrix.add(a, (float)k);
+	}
+
+	/**
+	 * sums every element of matrix with float
+	 * 
+	 * @param a Matrix
+	 * @param k float
+	 * @return new Matrix
+	 */
+	public static Matrix add(Matrix a, float k) {
+
 		float[][] ar = a.array;
 		float[][] cr = new float[ar.length][ar[0].length];
 		for (int i = 0; i < ar.length; i++) {
@@ -256,6 +274,18 @@ public class Matrix {
 	 */
 	public static float[][] add(float[][] a, int k) {
 
+		return Matrix.add(new Matrix(a), (float)k).array;
+	}
+
+	/**
+	 * sums every element of Array with float
+	 * 
+	 * @param a Array
+	 * @param k float
+	 * @return new Array
+	 */
+	public static float[][] add(float[][] a, float k) {
+
 		return Matrix.add(new Matrix(a), k).array;
 	}
 
@@ -267,7 +297,7 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix subtract(Matrix a, Matrix b) {
-		return Matrix.add(a, Matrix.Multiply(b, -1));
+		return Matrix.add(a, Matrix.Multiply(b, -1.0));
 	}
 
 	/**
@@ -278,6 +308,17 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix subtract(Matrix a, int j) {
+		return Matrix.add(a, (float)(-j));
+	}
+
+	/**
+	 * subtract given float with every element of given matrix
+	 * 
+	 * @param a Matrix
+	 * @param j float
+	 * @return Matrix
+	 */
+	public static Matrix subtract(Matrix a, float j) {
 		return Matrix.add(a, -j);
 	}
 
@@ -289,7 +330,18 @@ public class Matrix {
 	 * @return Array
 	 */
 	public static float[][] subtract(float[][] a, int j) {
-		return Matrix.add(a, -j);
+		return Matrix.add(new Matrix(a), (float)(-j)).array;
+	}
+
+	/**
+	 * subtract given float with every element of given Array
+	 * 
+	 * @param a Array
+	 * @param j float
+	 * @return Array
+	 */
+	public static float[][] subtract(float[][] a, float j) {
+		return Matrix.add(new Matrix(a), -j).array;
 	}
 
 	/**
@@ -312,6 +364,18 @@ public class Matrix {
 	 * @return Matrix
 	 */
 	public static Matrix Multiply(Matrix a, int b) {
+		return Matrix.Multiply(a, (float)b);
+	}
+
+	/**
+	 * multiplies every element of Matrix a(first param) with float b(second
+	 * param)
+	 * 
+	 * @param a Matrix
+	 * @param b float
+	 * @return Matrix
+	 */
+	public static Matrix Multiply(Matrix a, float b) {
 		float[][] ar = a.array;
 
 		for (int j = 0; j < ar.length; j++) {
@@ -330,6 +394,17 @@ public class Matrix {
 	 * @return Array
 	 */
 	public static float[][] Multiply(float[][] a, int b) {
+		return Matrix.Multiply(new Matrix(a), (float)b).array;
+	}
+
+	/**
+	 * multiplies every element of Array a(first param) with float b(second param)
+	 * 
+	 * @param a Array
+	 * @param b float
+	 * @return Array
+	 */
+	public static float[][] Multiply(float[][] a, float b) {
 		return Matrix.Multiply(new Matrix(a), b).array;
 	}
 
@@ -362,7 +437,7 @@ public class Matrix {
 
 	public static float[][] dotMultiply(float[][] a, float[][] b) {
 		if (!Matrix.dimensionCheck(Matrix.dimensions(a), Matrix.dimensions(b))) {
-			throw new IllegalArgumentException("dimensions of both arrays should be same");
+			throw new IllegalArgumentException("Dimensions of both arrays should be same");
 		}
 		float[][] c = new float[a[0].length][a.length];
 		for (int i = 0; i < a[0].length; i++) {
@@ -392,16 +467,13 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a matrix, Matrix has to be square
+	 * Transposes a matrix
 	 * 
 	 * @param a Matrix
 	 * @return Matrix
 	 */
 	public static Matrix transpose(Matrix a) {
-		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(a))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
-		}
-		float[][] arr = new float[a.array.length][a.array.length];
+		float[][] arr = new float[a.array[0].length][a.array.length];
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {
 
@@ -413,7 +485,7 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a Array, Array has to be square
+	 * Transposes a Array
 	 * 
 	 * @param a Array
 	 * @return Array
@@ -430,7 +502,7 @@ public class Matrix {
 	 */
 	public static Matrix adjoint(float[][] array2) {
 		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(array2))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
+			throw new IllegalArgumentException("Input should be a Square Matrix");
 		}
 		int N = array2.length;
 		float[][] adj = new float[N][N];
@@ -469,7 +541,7 @@ public class Matrix {
 	 */
 	public static float determinant(Matrix mat) {
 		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(mat))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
+			throw new IllegalArgumentException("Input should Be a Square Matrix");
 		}
 		Matrix b = new Matrix(mat.array.clone());
 		return createDeterminant(b, b.array.length);
@@ -542,7 +614,7 @@ public class Matrix {
 	 */
 	public static Matrix inverse(Matrix a) {
 		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(a))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
+			throw new IllegalArgumentException("Input should be a Square Matrix");
 		}
 		int n = a.array.length;
 		float[][] b = a.array;
