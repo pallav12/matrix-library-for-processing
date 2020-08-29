@@ -398,16 +398,13 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a matrix, Matrix has to be square
+	 * Transposes a matrix
 	 * 
 	 * @param a Matrix
 	 * @return Matrix
 	 */
 	public static Matrix transpose(Matrix a) {
-		if (!Matrix.inverseDimensionCheck(Matrix.dimensions(a))) {
-			throw new IllegalArgumentException("Input should Square Matrix");
-		}
-		float[][] arr = new float[a.array.length][a.array.length];
+		float[][] arr = new float[a.array[0].length][a.array.length];
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {
 
@@ -419,7 +416,7 @@ public class Matrix {
 	}
 
 	/**
-	 * Transposes a Array, Array has to be square
+	 * Transposes a Array
 	 * 
 	 * @param a Array
 	 * @return Array
