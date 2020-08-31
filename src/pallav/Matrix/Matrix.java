@@ -185,14 +185,19 @@ public class Matrix {
 	}
 
 	/**
-	 * copy a Matrix
+	 * make a deep copy of a Matrix
 	 * 
 	 * @param a Matrix
 	 * @return b Matrix
 	 */
 	public static Matrix copy(Matrix a) {
-		float[][] arr = a.array.clone();
-		return new Matrix(arr);
+		double[][] c = new double[a.array.length][a.array[0].length];
+		for (int i = 0; i < a.array.length; i++) {
+			for (int j = 0; j < a.array[0].length; j++) {
+				c[i][j] = a.array[i][j];
+			}
+		}
+		return new Matrix(c);
 
 	}
 
